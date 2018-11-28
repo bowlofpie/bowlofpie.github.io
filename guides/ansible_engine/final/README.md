@@ -6,12 +6,31 @@ A playbook can have multiple plays and a play can have one or multiple tasks.  T
 
 For our first playbook, we are only going to write one play and two tasks.
 
+## Section 1: Run the playbook
+
+Let's run the playbook to install the web server:
+
+```bash
+[student1@ansible apache-simple-playbook]$ ansible-playbook ./site.yml
+```
+
+To view the web site, first we need to get the IP address of one of the web servers from the inventory file:
+
+```bash
+cat  ~/zz
+```
+
+Make a note of the IP address of `node1` in the `web` inventory group.
+
+Open your web browser and go to this IP address. You will see your web site up and running.
+
+
 ## Section 1: View the web site
 
 First, we need to get the IP address of one of the web servers from the inventory file:
 
 ```bash
-cat  ~/zz
+[student1@ansible apache-simple-playbook]$ cat ~/lightbulb/lessons/lab_inventory/<YOUR STUDENT ID>-instances.txt 
 ```
 
 Make a note of the IP address of `node1` in the `web` inventory group.
@@ -25,7 +44,7 @@ Now we will make an unathorised change to the `node1` web site.
 Using the `node1` IP address, log in to it using your student ID and password:
 
 ```bash
-ssh <username>@<IP address of node1>
+[student1@ansible apache-simple-playbook]$ ssh <YOUR STUDENT ID>student1@13.229.211.65
 ```
 
 Change the contents of the `index.html` file:
