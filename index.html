@@ -1,100 +1,90 @@
-# Exercise 1 - Running Ad-hoc commands
+<h1 id="exercise1runningadhoccommands">Exercise 1 - Running Ad-hoc commands</h1>
 
-For our first exercise, we are going to run some ad-hoc commands to help you get a feel for how Ansible works.  Ansible Ad-Hoc commands enable you to perform tasks on remote nodes without having to write a playbook.  They are very useful when you simply need to do one or two things quickly and often, to many remote nodes.
+<p>For our first exercise, we are going to run some ad-hoc commands to help you get a feel for how Ansible works.  Ansible Ad-Hoc commands enable you to perform tasks on remote nodes without having to write a playbook.  They are very useful when you simply need to do one or two things quickly and often, to many remote nodes.</p>
 
-## Step 1.1 - Define your Inventory
+<h2 id="step11defineyourinventory">Step 1.1 - Define your Inventory</h2>
 
-Define your inventory.  Inventories are crucial to Ansible as they define remote machines on which you wish to run commands or your playbook(s). In this lab the inventory is provided by your instructor. The inventory is an ini formatted file listing your hosts, sorted in groups, additionally providing some variables. It looks like:
+<p>Define your inventory.  Inventories are crucial to Ansible as they define remote machines on which you wish to run commands or your playbook(s). In this lab the inventory is provided by your instructor. The inventory is an ini formatted file listing your hosts, sorted in groups, additionally providing some variables. It looks like:</p>
 
-```bash
-[all:vars]
+<pre><code class="bash language-bash">[all:vars]
 ansible_user=student1
 ansible_ssh_pass=PASSWORD
 ansible_port=22
 
 [web]
-node1 ansible_host=<X.X.X.X>
-node2 ansible_host=<Y.Y.Y.Y>
-node3 ansible_host=<Z.Z.Z.Z>
+node1 ansible_host=&lt;X.X.X.X&gt;
+node2 ansible_host=&lt;Y.Y.Y.Y&gt;
+node3 ansible_host=&lt;Z.Z.Z.Z&gt;
 
 [control]
 ansible ansible_host=44.55.66.77
-```
+</code></pre>
 
-## Step 1.2 - Ping a host
+<h2 id="step12pingahost">Step 1.2 - Ping a host</h2>
 
-Let's start with something really basic - pinging a host.  The `ping` module makes sure our web hosts are responsive.
+<p>Let's start with something really basic - pinging a host.  The <code>ping</code> module makes sure our web hosts are responsive.</p>
 
-```bash
-ansible web -m ping
-```
+<pre><code class="bash language-bash">ansible web -m ping
+</code></pre>
 
-## Step 2:
+<h2 id="step2">Step 2:</h2>
 
-Now let's see how we can run a good ol' fashioned Linux command and format the output using the `command` module.
+<p>Now let's see how we can run a good ol' fashioned Linux command and format the output using the <code>command</code> module.</p>
 
-```bash
-ansible web -m command -a "uptime" -o
-```
+<pre><code class="bash language-bash">ansible web -m command -a "uptime" -o
+</code></pre>
 
-## Step 3:
+<h2 id="step3">Step 3:</h2>
 
-Take a look at your web node's configuration.  The `setup` module displays ansible facts (and a lot of them) about an endpoint.
+<p>Take a look at your web node's configuration.  The <code>setup</code> module displays ansible facts (and a lot of them) about an endpoint.</p>
 
-```bash
-ansible web -m setup
-```
+<pre><code class="bash language-bash">ansible web -m setup
+</code></pre>
 
-## Step 4:
+<h2 id="step4">Step 4:</h2>
 
-Now, let's install Apache using the `yum` module.
+<p>Now, let's install Apache using the <code>yum</code> module.</p>
 
-```bash
-ansible web -m yum -a "name=httpd state=present" -b
-```
+<pre><code class="bash language-bash">ansible web -m yum -a "name=httpd state=present" -b
+</code></pre>
 
-## Step 5:
+<h2 id="step5">Step 5:</h2>
 
-OK, Apache is installed now so let's start it up using the `service` module.
+<p>OK, Apache is installed now so let's start it up using the <code>service</code> module.</p>
 
-```bash
-ansible web -m service -a "name=httpd state=started" -b
-```
+<pre><code class="bash language-bash">ansible web -m service -a "name=httpd state=started" -b
+</code></pre>
 
-## Step 6:
+<h2 id="step6">Step 6:</h2>
 
-Finally, let's clean up after ourselves.  First, stop the httpd service.
+<p>Finally, let's clean up after ourselves.  First, stop the httpd service.</p>
 
-```bash
-ansible web -m service -a "name=httpd state=stopped" -b
-```
+<pre><code class="bash language-bash">ansible web -m service -a "name=httpd state=stopped" -b
+</code></pre>
 
-## Step 7:
+<h2 id="step7">Step 7:</h2>
 
-Next, remove the Apache package.
+<p>Next, remove the Apache package.</p>
 
-```bash
-ansible web -m yum -a "name=httpd state=absent" -b
-```
+<pre><code class="bash language-bash">ansible web -m yum -a "name=httpd state=absent" -b
+</code></pre>
 
+<hr />
 
----
-**NOTE**
+<p><strong>NOTE</strong></p>
 
-Like many Linux commands, `ansible` allows for long-form options as well as short-form.  For example:
+<p>Like many Linux commands, <code>ansible</code> allows for long-form options as well as short-form.  For example:</p>
 
-```bash
-ansible web --module-name ping
-```
+<pre><code class="bash language-bash">ansible web --module-name ping
+</code></pre>
 
-is the same as running
+<p>is the same as running</p>
 
-```bash
-ansible web -m ping
-```
+<pre><code class="bash language-bash">ansible web -m ping
+</code></pre>
 
-We are going to be using the short-form options throughout this workshop.
+<p>We are going to be using the short-form options throughout this workshop.</p>
 
----
+<hr />
 
-[Click Here to return to the Ansible Linklight - Ansible Engine Workshop](../README.md)
+<p><a href="../README.md">Click Here to return to the Ansible Linklight - Ansible Engine Workshop</a></p>
