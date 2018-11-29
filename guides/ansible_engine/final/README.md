@@ -4,7 +4,7 @@ Now we have written our first ansible *playbook*, we will run it and see the res
 
 ## Section 1: Run the playbook
 
-Let's run the playbook to install, configure and start the web server:
+Let's run the playbook we have written to install, configure and start the web server:
 
 ```bash
 [student1@ansible files]$ cd ~/apache-simple-playbook
@@ -67,7 +67,7 @@ Open your web browser and go to this IP address. You will see your web site up a
 
 Now we will make an unathorised change to the `node1` web site.
 
-Using the `node1` IP address, log in to it using your student ID and password:
+Using the `node1` IP address again, log in to it using your student ID and password:
 
 ```bash
 [student1@ansible apache-simple-playbook]$ ssh <YOUR STUDENT ID>@<IP ADDRESS OF node1>
@@ -80,7 +80,7 @@ Change the contents of the `index.html` file:
 
 ```
 
-Now refresh your web browser and see the changed site.
+Now refresh your web browser and notice the changed site.
 
 Logout of `node1`
 
